@@ -1,12 +1,13 @@
-// script.js (versión corregida)
+// script.js (versión mejorada)
 let palabras = [];
 let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
-let temporizadorId = null;    // timeout id para finalizar ronda
-let ticTimeoutId = null;      // timeout id para tic-tac (usamos setTimeout recursivo)
+let temporizadorId = null;
+let ticTimeoutId = null;
 let tiempoTotal = 0;
+let tiempoInicio = 0;
 let rondaActiva = false;
-let nextRoundReady = false;   // indicador claro de que se puede empezar la siguiente ronda
+let nextRoundReady = false;
 
 const menu = document.getElementById('menu');
 const game = document.getElementById('game');
@@ -17,20 +18,18 @@ const scoreBlue = document.getElementById('scoreBlue');
 const confettiCanvas = document.getElementById('confettiCanvas');
 const winnerText = document.getElementById('winnerText');
 
-const ticSound = document.getElementById('ticSound');             // <audio id="ticSound" ...>
-const bellSound = document.getElementById('bellSound');           // <audio id="bellSound" ...>
-const applauseSound = document.getElementById('applauseSound');   // <audio id="applauseSound" ...>
+const ticSound = document.getElementById('ticSound');
+const bellSound = document.getElementById('bellSound');
+const applauseSound = document.getElementById('applauseSound');
 
 const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
 confettiCanvas.height = innerHeight;
-
 let confettis = [];
 
 async function cargarPalabras() {
   const res = await fetch('palabras.txt');
   const text = await res.text();
-  // soporta expresiones con espacios; líneas vacías ignoradas
   palabras = text.split(/\r?\n/).map(p => p.trim()).filter(Boolean);
 }
 
@@ -47,111 +46,76 @@ function palabraAleatoria() {
 }
 
 function nuevaRonda() {
-  // inicia una nueva ronda completa (temporizador aleatorio una vez por ronda)
   rondaActiva = true;
   nextRoundReady = false;
 
-  // elegir duración aleatoria 5 - 12 s
   tiempoTotal = Math.random() * 7000 + 5000;
+  tiempoInicio = performance.now();
 
-  // limpiar posibles timeouts previos
-  if (temporizadorId) {
-    clearTimeout(temporizadorId);
-    temporizadorId = null;
-  }
-  if (ticTimeoutId) {
-    clearTimeout(ticTimeoutId);
-    ticTimeoutId = null;
-  }
+  clearTimeout(temporizadorId);
+  clearTimeout(ticTimeoutId);
 
-  // inicio tic-tac y timeout de explosión
   iniciarTicTac();
   temporizadorId = setTimeout(explotar, tiempoTotal);
 
-  // cambiar el color/turno SOLO al empezar nueva ronda (por diseño)
   cambiarTurno();
-
-  // mostrar palabra grande en el centro
   wordElem.textContent = palabraAleatoria();
   wordElem.style.opacity = '1';
   wordElem.style.fontSize = '3em';
-  // ocultar posible aviso anterior
-  wordElem.classList.remove('pulse-hint');
 }
 
 function iniciarTicTac() {
-  const startTime = performance.now();
-
-  // función recursiva que ajusta su propio intervalo
   const tick = () => {
-    const elapsed = performance.now() - startTime;
-    const progreso = Math.min(1, elapsed / tiempoTotal); // 0..1
+    if (!rondaActiva) return;
 
-    // ajusta intervalo de tic según progreso (se acelera al final)
-    // base 900ms -> 700 -> 450 -> 220 -> 120ms
-    let intervalo = 900;
-    if (progreso > 0.5) intervalo = 700;
-    if (progreso > 0.7) intervalo = 450;
-    if (progreso > 0.85) intervalo = 220;
-    if (progreso > 0.95) intervalo = 120;
+    const elapsed = performance.now() - tiempoInicio;
+    const restante = Math.max(0, tiempoTotal - elapsed);
+    const progreso = 1 - (restante / tiempoTotal); // 0 al inicio, 1 al final
 
-    // reproducir tic (manejo de promesa para evitar errores)
+    // Cuanto menos tiempo quede, más rápido el tic
+    // y un pequeño componente aleatorio para generar sorpresa
+    let baseInterval = 900;
+    if (restante < tiempoTotal * 0.6) baseInterval = 700;
+    if (restante < tiempoTotal * 0.4) baseInterval = 450;
+    if (restante < tiempoTotal * 0.2) baseInterval = 250;
+    if (restante < tiempoTotal * 0.1) baseInterval = 150;
+    const randomFactor = Math.random() * 0.3 + 0.85;
+    const intervalo = baseInterval * randomFactor;
+
     try {
       ticSound.currentTime = 0;
       ticSound.play().catch(() => {});
-    } catch (e) {
-      // algunos navegadores bloquean autoplay si no hubo interacción; lo ignoramos
-    }
+    } catch (e) {}
 
-    // programar siguiente tic solo si la ronda sigue activa
-    if (rondaActiva) {
-      ticTimeoutId = setTimeout(tick, intervalo);
-    }
+    ticTimeoutId = setTimeout(tick, intervalo);
   };
 
-  // lanzar el primer tick inmediatamente
   tick();
 }
 
 function pararTicTac() {
-  if (ticTimeoutId) {
-    clearTimeout(ticTimeoutId);
-    ticTimeoutId = null;
-  }
+  clearTimeout(ticTimeoutId);
 }
 
 function explotar() {
-  // fin de la ronda (no de la partida necesariamente)
   rondaActiva = false;
   pararTicTac();
+  clearTimeout(temporizadorId);
 
-  // detener timeout por si algo quedó (defensivo)
-  if (temporizadorId) {
-    clearTimeout(temporizadorId);
-    temporizadorId = null;
-  }
-
-  // sonar campana corta (manejo seguro de reproducción)
   try {
     bellSound.currentTime = 0;
     bellSound.play().catch(() => {});
   } catch (e) {}
 
-  // determinar ganador de la ronda (equipo contrario al que tenía la palabra)
   const ganador = turno === 'rojo' ? 'azul' : 'rojo';
   puntos[ganador]++;
   actualizarPuntos();
 
-  // mostrar resultado de la ronda y permitir avanzar con click
   if (puntos[ganador] >= 3) {
-    // partida finalizada: mostrar ganador completo
     mostrarGanador(ganador);
   } else {
-    // fin de ronda: texto y espera de click
-    wordElem.textContent = `${ganador.toUpperCase()} gana la ronda 🎉\n(Pulsa para siguiente)`;
-    wordElem.style.fontSize = '1.6em';
-    // pequeño estilo visual para indicar que se puede pulsar
-    wordElem.classList.add('pulse-hint');
+    // No mostrar texto ni mensaje, solo esperar click
+    wordElem.textContent = '';
     nextRoundReady = true;
   }
 }
@@ -162,7 +126,6 @@ function actualizarPuntos() {
 }
 
 function mostrarGanador(equipo) {
-  // reproducir campana + aplausos, lanzar confeti y mostrar pantalla de ganador
   game.classList.remove('active');
   winnerScreen.classList.add('active');
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
@@ -172,7 +135,6 @@ function mostrarGanador(equipo) {
     bellSound.play().catch(() => {});
   } catch (e) {}
 
-  // aplausos poco después (pequeño delay)
   setTimeout(() => {
     try {
       applauseSound.currentTime = 0;
@@ -183,7 +145,6 @@ function mostrarGanador(equipo) {
   lanzarConfeti();
 }
 
-// --- Confetti (igual que antes) ---
 function lanzarConfeti() {
   for (let i = 0; i < 150; i++) {
     confettis.push({
@@ -210,18 +171,21 @@ function animarConfeti() {
   requestAnimationFrame(animarConfeti);
 }
 
-// --- Listeners UI ---
+// --- Listeners ---
 document.getElementById('playButton').addEventListener('click', async () => {
   menu.classList.remove('active');
   game.classList.add('active');
   await cargarPalabras();
-  // reset puntos por si venimos de reinicio
   puntos = { rojo: 0, azul: 0 };
   actualizarPuntos();
   nuevaRonda();
 });
 
 document.getElementById('restartButton').addEventListener('click', () => {
+  // detener aplausos al volver al menú
+  applauseSound.pause();
+  applauseSound.currentTime = 0;
+
   winnerScreen.classList.remove('active');
   menu.classList.add('active');
   puntos = { rojo: 0, azul: 0 };
@@ -229,28 +193,19 @@ document.getElementById('restartButton').addEventListener('click', () => {
   confettis = [];
 });
 
-// Click / tap en la pantalla de juego
 game.addEventListener('click', () => {
-  // si la ronda activa -> cambiar palabra y pasar turno
   if (rondaActiva) {
     cambiarTurno();
     wordElem.textContent = palabraAleatoria();
-    return;
-  }
-
-  // si la ronda ha terminado y estamos listos para la siguiente -> iniciarla
-  if (nextRoundReady) {
+  } else if (nextRoundReady) {
     nextRoundReady = false;
-    // iniciar nueva ronda sin cambiar puntos (la función nuevaRonda ya cambia el turno)
     nuevaRonda();
   }
 });
 
-// resize canvas confetti
 addEventListener('resize', () => {
   confettiCanvas.width = innerWidth;
   confettiCanvas.height = innerHeight;
 });
 
-// animación continua confetti
 animarConfeti();
