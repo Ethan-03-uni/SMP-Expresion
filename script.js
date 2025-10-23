@@ -104,8 +104,17 @@ function mostrarGanador(equipo) {
   game.classList.remove('active');
   winnerScreen.classList.add('active');
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
+
+  // Sonidos finales
+  const bell = document.getElementById('bellSound');
+  const applause = document.getElementById('applauseSound');
+  bell.currentTime = 0;
+  bell.play().catch(() => {});
+  setTimeout(() => applause.play().catch(() => {}), 500); // medio segundo después
+
   lanzarConfeti();
 }
+
 
 function lanzarConfeti() {
   for (let i = 0; i < 150; i++) {
