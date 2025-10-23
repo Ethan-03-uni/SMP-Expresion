@@ -112,7 +112,6 @@ function explotar() {
   rondaActiva = false;
   pararTicTac();
   clearTimeout(temporizadorId);
-  lanzarConfeti();
 
   try {
     bellSound.currentTime = 0;
@@ -204,6 +203,9 @@ function animarConfeti() {
 
 // --- Listeners ---
 document.getElementById('playButton').addEventListener('click', async () => {
+  try {
+    ticSound.play().catch(() => {});
+  } catch (e) {}
   menu.classList.remove('active');
   game.classList.add('active');
   await cargarPalabras();
