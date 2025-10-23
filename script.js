@@ -3,7 +3,6 @@ let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
 let temporizador;
 let tiempoTotal;
-let tiempoTranscurrido = 0;
 let rondaActiva = false;
 let ticInterval;
 
@@ -16,9 +15,8 @@ const scoreBlue = document.getElementById('scoreBlue');
 const confettiCanvas = document.getElementById('confettiCanvas');
 const winnerText = document.getElementById('winnerText');
 const ticSound = document.getElementById('ticSound');
-
-// Nuevo sonido de campana al final de la ronda
-const bellSound = new Audio('assets/bell.wav');
+const bellSound = document.getElementById('bellSound');
+const applauseSound = document.getElementById('applauseSound');
 
 const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
@@ -45,14 +43,14 @@ function palabraAleatoria() {
 
 function nuevaRonda() {
   rondaActiva = true;
-  tiempoTranscurrido = 0;
-  tiempoTotal = Math.random() * 7000 + 5000; // 5–12s
+  tiempoTotal = Math.random() * 7000 + 5000; // 5–12 s
   clearTimeout(temporizador);
   clearInterval(ticInterval);
   iniciarTicTac();
   temporizador = setTimeout(explotar, tiempoTotal);
   cambiarTurno();
   wordElem.textContent = palabraAleatoria();
+  wordElem.style.fontSize = "3em";
 }
 
 function iniciarTicTac() {
@@ -61,8 +59,8 @@ function iniciarTicTac() {
     const elapsed = performance.now() - start;
     const progreso = elapsed / tiempoTotal;
 
-    // ajustar velocidad según progreso
-    let intervalo = 1000; // base
+    // velocidad del tic-tac según progreso
+    let intervalo = 1000;
     if (progreso > 0.5) intervalo = 700;
     if (progreso > 0.7) intervalo = 400;
     if (progreso > 0.85) intervalo = 200;
@@ -82,6 +80,8 @@ function pararTicTac() {
 function explotar() {
   rondaActiva = false;
   pararTicTac();
+
+  bellSound.currentTime = 0;
   bellSound.play().catch(() => {});
 
   let ganador = turno === 'rojo' ? 'azul' : 'rojo';
@@ -91,7 +91,11 @@ function explotar() {
   if (puntos[ganador] >= 3) {
     mostrarGanador(ganador);
   } else {
+    // Mostrar fin de ronda y esperar clic para iniciar siguiente
     wordElem.textContent = `${ganador.toUpperCase()} gana la ronda 🎉`;
+    wordElem.style.fontSize = "2em";
+    wordElem.style.transition = "opacity 0.5s ease";
+    game.dataset.nextRoundReady = "true";
   }
 }
 
@@ -105,16 +109,12 @@ function mostrarGanador(equipo) {
   winnerScreen.classList.add('active');
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
 
-  // Sonidos finales
-  const bell = document.getElementById('bellSound');
-  const applause = document.getElementById('applauseSound');
-  bell.currentTime = 0;
-  bell.play().catch(() => {});
-  setTimeout(() => applause.play().catch(() => {}), 500); // medio segundo después
+  bellSound.currentTime = 0;
+  bellSound.play().catch(() => {});
+  setTimeout(() => applauseSound.play().catch(() => {}), 500);
 
   lanzarConfeti();
 }
-
 
 function lanzarConfeti() {
   for (let i = 0; i < 150; i++) {
@@ -158,7 +158,14 @@ document.getElementById('restartButton').addEventListener('click', () => {
 });
 
 game.addEventListener('click', () => {
-  if (!rondaActiva) return; // evita clicks fuera de ronda
+  if (!rondaActiva) {
+    if (game.dataset.nextRoundReady === "true") {
+      game.dataset.nextRoundReady = "false";
+      nuevaRonda();
+      return;
+    }
+    return;
+  }
   cambiarTurno();
   wordElem.textContent = palabraAleatoria();
 });
