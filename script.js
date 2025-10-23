@@ -2,8 +2,10 @@ let palabras = [];
 let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
 let temporizador;
-let tiempoRestante;
+let tiempoTotal;
+let tiempoTranscurrido = 0;
 let rondaActiva = false;
+let ticInterval;
 
 const menu = document.getElementById('menu');
 const game = document.getElementById('game');
@@ -13,6 +15,7 @@ const scoreRed = document.getElementById('scoreRed');
 const scoreBlue = document.getElementById('scoreBlue');
 const confettiCanvas = document.getElementById('confettiCanvas');
 const winnerText = document.getElementById('winnerText');
+const ticSound = document.getElementById('ticSound');
 
 const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
@@ -23,7 +26,8 @@ let confettis = [];
 async function cargarPalabras() {
   const res = await fetch('palabras.txt');
   const text = await res.text();
-  palabras = text.split('\n').map(p => p.trim()).filter(Boolean);
+  // Permite frases completas con espacios, separadas por salto de línea
+  palabras = text.split(/\r?\n/).map(p => p.trim()).filter(Boolean);
 }
 
 function cambiarTurno() {
@@ -39,19 +43,41 @@ function palabraAleatoria() {
 
 function nuevaRonda() {
   rondaActiva = true;
+  tiempoTranscurrido = 0;
   wordElem.textContent = palabraAleatoria();
   cambiarTurno();
-  let duracion = Math.random() * 7000 + 5000; // entre 5 y 12s
+  tiempoTotal = Math.random() * 7000 + 5000; // 5–12s aleatorio
   clearTimeout(temporizador);
-  temporizador = setTimeout(explotar, duracion);
+  temporizador = setTimeout(explotar, tiempoTotal);
+  iniciarTicTac();
+}
+
+function pararTicTac() {
+  clearInterval(ticInterval);
+}
+
+function iniciarTicTac() {
+  pararTicTac();
+  let intervalo = 1000; // 1s entre tics
+  ticInterval = setInterval(() => {
+    const progreso = tiempoTranscurrido / tiempoTotal;
+    if (progreso > 0.7) intervalo = 500; // más rápido
+    if (progreso > 0.9) intervalo = 250; // aún más rápido
+    // reproducir sonido
+    ticSound.currentTime = 0;
+    ticSound.play();
+    tiempoTranscurrido += intervalo;
+  }, intervalo);
 }
 
 function explotar() {
   rondaActiva = false;
+  pararTicTac();
+
   let ganador = turno === 'rojo' ? 'azul' : 'rojo';
   puntos[ganador]++;
   actualizarPuntos();
-  lanzarConfeti();
+
   if (puntos[ganador] >= 3) {
     mostrarGanador(ganador);
   } else {
@@ -68,10 +94,11 @@ function mostrarGanador(equipo) {
   game.classList.remove('active');
   winnerScreen.classList.add('active');
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
+  lanzarConfeti();
 }
 
 function lanzarConfeti() {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 150; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
       y: Math.random() * innerHeight - innerHeight,
