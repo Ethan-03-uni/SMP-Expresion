@@ -123,5 +123,1486 @@ valor
 verdad
 vida
 época
+humanidad
+humano
+persona
+gente
+hombre
+mujer
+bebé
+niño, niña
+adolescente
+adulto, adulta
+anciano, anciana
+don, doña
+señor, señora
+caballero
+dama
+individuo
+cuerpo
+pierna
+pie
+talón
+espinilla
+rodilla
+muslo
+cabeza
+cara
+boca
+labio
+diente
+ojo
+nariz
+barba
+bigote
+cabello
+oreja
+cerebro
+estómago
+brazo
+codo
+hombro
+uña
+mano
+muñeca
+palma
+dedo
+trasero, cola, glúteos
+abdomen
+hígado
+músculo
+cuello
+corazón
+mente
+alma
+espíritu
+pecho
+cintura
+cadera
+espalda
+sangre
+carne
+piel
+hueso
+resfriado
+gripe
+diarrea
+salud
+enfermedad
+columna vertebral
+familia
+amigo, amiga
+conocido, conocida
+colega
+pareja
+esposo, esposa
+matrimonio
+amor
+padre
+madre
+hermano, hermana
+hijo, hija
+abuelo, abuela
+bisabuelo, bisabuela
+nieto, nieta
+bisnieto, bisnieta
+primo, prima
+tío, tía
+sobrino, sobrina
+criatura
+especie
+ser
+vida
+nacimiento
+reproducción
+muerte
+Geografía
+naturaleza
+campo
+bosque
+selva
+jungla
+desierto
+costa
+playa
+río
+laguna
+lago
+mar
+océano
+cerro 
+monte
+montaña
+luz
+energía
 éxito
-
+animal
+perro
+gato
+vaca
+cerdo
+caballo, yegua
+oveja
+mono
+ratón
+rata
+tigre
+conejo
+dragón
+ciervo
+rana
+león
+jirafa
+elefante
+pájaro
+gallina
+gorrión
+cuervo
+águila
+halcón
+pez
+camarón
+langosta
+sardina
+atún
+calamar
+pulpo
+insecto
+bicho
+mariposa
+polilla
+saltamontes
+araña
+mosca
+mosquito
+cucaracha
+caracol
+babosa
+lombriz
+marisco
+molusco
+lagarto
+serpiente
+cocodrilo
+alimento
+comida
+bebida
+vegetal
+planta
+césped
+flor
+fruta
+semilla
+árbol
+hoja
+raíz
+tallo
+hongo
+ciruela
+pino
+bambú
+nuez
+almendra
+castaña
+arroz
+avena
+cebada
+trigo
+verdura
+patatas
+judías
+guisantes
+rábano
+zanahoria
+manzana
+naranja
+plátano
+pera
+castaño
+durazno
+tomate
+sandía
+carne
+gaseosa
+tiempo
+calendario
+edad
+época
+era
+fecha
+instante
+momento
+segundo
+minuto
+hora
+día
+semana
+entre semana
+fin de semana
+mes
+año
+década
+siglo
+milenio
+ayer
+hoy
+mañana
+amanecer
+mediodía
+tarde
+anochecer
+noche
+lunes
+martes
+miércoles
+jueves
+viernes
+sábado
+domingo
+ambiente
+espacio
+entorno
+área
+superficie
+volumen
+región
+zona
+lado
+mundo
+planeta
+sol
+luna
+estrella
+galaxia
+universo
+clima
+despejado
+nublado
+lluvia
+nieve
+viento
+trueno
+rayo
+tormenta
+cielo
+este
+oeste
+sur
+norte
+derecha
+izquierda
+diagonal
+exterior
+interior
+Materiales
+calor
+agua
+hielo
+vapor
+fuego
+gas
+aire
+atmósfera
+tierra
+piso
+suelo
+metal
+metálico
+hierro
+oro
+plata
+plomo
+sal
+barro
+peso
+metro
+milímetro
+centímetro
+kilómetro
+litro
+gramo
+kilo
+cantidad
+total
+medida
+sociedad
+comunidad
+reunión
+encuentro
+estructura
+administración
+organización
+asociación
+empresa
+equipo
+autoridad
+cargo
+campaña
+club
+comisión
+congreso
+consejo
+partido
+país
+nación
+gobierno
+estado
+provincia
+departamento
+municipio
+democracia
+dictadura
+política
+político
+presidente
+ministro
+director
+parlamentario
+congresista
+senador
+diputado
+representante
+gobernador
+intendente
+alcalde
+policía
+bomberos
+capital
+ciudad
+población
+pueblo
+villa
+obligación
+libertad
+derecho
+permiso
+prohibición
+constitución
+ley
+decreto
+norma
+economía
+consumo
+demanda
+compañía
+comercio
+mercado
+servicio
+producto
+producción
+transacción
+almacén
+hotel
+fábrica
+cuenta
+boleto
+entrada
+dinero
+billete
+cambio
+máquina expendedora
+precio
+tarifa
+valor
+escritorio
+silla
+mesa
+cama
+dormitorio
+habitación
+cuarto
+oficina
+panel
+puerta
+ventana
+entrada
+hogar
+casa
+apartamento
+departamento
+edificio
+construcción
+ascensor
+escalera
+aparato
+cámara
+aguja
+clavo
+hilo
+cuerda
+cordón
+bolsillo
+bolso
+bolsa
+paraguas
+parasol
+pantalla
+pomo
+llave
+trancar
+arma
+escultura
+libro
+revista
+cuadro
+grabado
+electricidad
+corriente
+base
+pata
+conexión
+ropa
+prenda
+manga
+cuello
+botón
+cremallera
+cierre
+cinturón
+zapato
+gafas
+pantalón
+camisa
+camiseta
+zapatilla
+cordones
+abrigo
+chaqueta
+calcetines
+bragas, calzón
+calzoncillo
+sujetador
+falda
+transporte
+transporte público
+transporte privado
+tránsito
+tráfico
+vehículo
+tren
+ferrocarril
+subterráneo
+metro
+camino
+vía
+ruta
+calle
+carretera
+autopista
+avenida
+estación
+parada
+avión
+aeropuerto
+automóvil
+coche
+autobús
+ambulancia
+número
+alfabeto
+símbolo
+punto
+coma
+raíz
+origen
+fuente
+papel
+carta
+comunicación
+expresión
+voz
+texto
+periodismo
+periódico
+diario
+diccionario
+documento
+informe
+noticia
+ordenador
+idioma extranjero
+japonés
+inglés
+chino
+alemán
+español
+francés
+color
+blanco
+negro
+gris
+rojo
+naranja
+amarillo
+verde
+celeste
+azul
+violeta
+rosa
+marrón
+café
+cultura
+autor
+actuación
+espectador
+espectáculo
+entretenimiento
+arte
+cine
+dibujo
+pintura
+música
+religión
+dios
+artículo
+educación
+escuela
+instituto
+colegio
+universidad
+clase
+curso
+estudio
+formación
+análisis
+investigación
+conocimiento
+idea
+información
+dato
+forma
+manera
+modo
+estilo
+figura
+elemento
+uso
+ciencia
+aritmética
+historia
+geografía
+educación física
+deporte
+carrera
+competición
+competencia
+ayuda
+favor
+apoyo
+búsqueda
+duda
+pregunta
+respuesta
+cuestión
+solicitud
+decisión
+elección
+consejo
+sugerencia
+orden
+control
+sistema
+trabajo
+empleo
+profesión
+esfuerzo
+lugar
+posición
+movimiento
+velocidad
+aceleración
+dirección
+tamaño
+largo
+longitud
+alto
+altura
+ancho
+mayoría
+minoría
+aumento
+reducción
+crecimiento
+fondo
+frente
+cosa
+aspecto
+contenido
+objeto
+parte
+sector
+palabra
+nombre
+código
+secreto
+formalidad
+presente
+pasado
+futuro
+ocasión
+vez
+acción
+actividad
+acto
+programa
+proyecto
+obra
+acuerdo
+actitud
+atención
+capacidad
+concepto
+tema
+condición
+caso
+conjunto
+grupo
+creación
+destrucción
+origen
+destino
+objetivo
+meta
+función
+relación
+realidad
+situación
+problema
+intento
+solución
+efecto
+resultado
+logro
+éxito
+fracaso
+causa
+consecuencia
+beneficio
+perjuicio
+calidad
+tipo
+ataque
+defensa
+paz
+conflicto
+guerra
+carácter
+característica
+crisis
+cambio
+desarrollo
+progreso
+avance
+retroceso
+mejora
+deterioro
+comienzo
+inicio
+principio
+transcurso
+final
+cabo
+etapa
+fase
+paso
+serie
+secuencia
+grado
+nivel
+proceso
+corte
+interrupción
+espera
+diferencia
+similitud
+sentido
+sensación
+vista
+oído
+tacto
+olfato
+dolor
+conciencia
+percepción
+imagen
+fuerza
+potencia
+presencia
+existencia
+experiencia
+posibilidad
+probabilidad
+verdad
+mentira
+razón
+acierto
+equivocación
+necesidad
+falta
+significado
+carácter
+personalidad
+pensamiento
+memoria
+recuerdo
+deseo
+alegría
+tristeza
+enfado
+placer
+éxtasis
+empatía
+interés
+aburrimiento
+cansancio
+sorpresa
+susto
+seguridad
+confianza
+miedo
+temor
+ejemplo
+bueno
+malo
+superior
+inferior
+central
+lateral
+frontal
+trasero
+posterior
+cierto
+real
+falso
+mayor
+menor
+importante
+necesario
+absoluto
+relativo
+caro
+barato
+viejo
+joven
+nuevo
+cada
+cualquier
+dado
+actual
+reciente
+capaz
+fácil
+simple
+sencillo
+difícil
+complicado
+posible
+imposible
+probable
+improbable
+estricto
+serio
+general
+particular
+común
+especial
+usual
+único
+raro
+extraño
+fuerte
+débil
+correcto
+acertado
+incorrecto
+desacertado
+contrario
+opuesto
+inverso
+igual
+diferente
+parecido
+similar
+otro
+diverso
+manual
+automático
+universal
+mundial
+continental
+internacional
+nacional
+regional
+local
+urbano
+rural
+social
+político
+cultural
+artístico
+propio
+ajeno
+público
+privado
+alto
+bajo
+gran
+grande
+pequeño
+amplio
+angosto
+compacto
+delgado
+grueso
+caliente
+frío
+ligero
+pesado
+suave
+firme
+flexible
+duro
+blando
+caluroso
+fresco
+delicioso
+apetitoso
+horrible
+dulce
+picante
+salado
+amargo
+anterior
+posterior
+siguiente
+cercano
+lejano
+junto
+unido
+separado
+alejado
+feliz
+triste
+solo
+solitario
+contento
+tranquilo
+enfadado
+agitado
+ansioso
+interesado
+aburrido
+encantado
+cansado
+sorprendido
+asustado
+atemorizado
+doloroso
+picante
+ardiente
+apestoso
+maloliente
+ser
+estar
+haber
+aparecer
+desaparecer
+existir
+cambiar
+crecer
+vivir
+nacer
+morir
+revivir
+ir
+venir
+volver
+partir
+llegar
+llevar
+traer
+mover
+arrojar
+lanzar
+coger
+agarrar
+poner
+quitar
+sacar
+alcanzar
+acercar
+alejar
+lanzar
+arrojar
+lanzar
+coger
+agarrar
+sujetar
+golpear
+patear
+poner
+recoger
+levantar
+tomar
+pegar
+sentir
+ver
+oír
+escuchar
+tocar
+oler
+percibir
+amar
+querer
+desear
+odiar
+detestar
+entristecerse
+llorar
+reír
+enfadarse
+admirar
+alabar
+elogiar
+alegrarse
+encantarse
+consolar
+interesarse
+aburrirse
+cansarse
+sorprenderse
+asustarse
+atemorizarse
+comunicarse
+afirmar
+negar
+decir
+hablar
+callar
+escribir
+leer
+analizar
+pensar
+cantar
+señalar
+apuñalar
+morder
+clavar
+comer
+beber
+acordar
+afectar
+generar
+añadir
+agregar
+mejorar
+empeorar
+seguir
+avanzar
+retroceder
+ayudar
+complicar
+reunirse
+entrevistar
+abrir
+desenvolver
+jugar
+tener
+faltar
+dar
+recibir
+romper
+doblar
+cortar
+comprar
+vender
+llevar puesto
+cambiar
+intercambiar
+sustituir
+reemplazar
+cerrar
+buscar
+encontrar
+obtener
+conseguir
+crear
+creer
+comenzar
+iniciar
+empezar
+terminar
+acabar
+abandonar
+dejar
+entrar
+quedarse
+salir
+atender
+medir
+pesar
+considerar
+comparar
+evaluar
+decidir
+construir
+destruir
+deber
+poder
+conocer
+entender
+comprender
+atar
+saber
+trabajar
+separar
+dividir
+partir
+descansar
+dormir
+despertar
+aceptar
+rechazar
+descartar
+acompañar
+pedir
+solicitar
+pretender
+proponer
+sugerir
+usar
+utilizar
+hacer
+fabricar
+arreglar
+reparar
+explicar
+mostrar
+tratar
+evitar
+probar
+intentar
+comprobar
+verificar
+variar
+esperar
+necesitar
+precisar
+significar
+parecer
+distinguir
+Estar en las nubes
+Tirar la toalla
+Meter la pata
+No tener pelos en la lengua
+Llover a cántaros
+Estar como una cabra
+Ser pan comido
+Más vale tarde que nunca
+A mal tiempo, buena cara
+El que mucho abarca, poco aprieta
+Estar entre la espada y la pared
+Hacer la vista gorda
+Dejar con la boca abierta
+No tener ni pies ni cabeza
+Ir al grano
+Dormirse en los laureles
+Echar una mano
+Andarse por las ramas
+Estar en las últimas
+Tomarse algo con calma
+Dar en el clavo
+Hacer el agosto
+Buscarle tres pies al gato
+No dar pie con bola
+Estar en el ajo
+Tener la mosca detrás de la oreja
+Ir viento en popa
+Ser un cero a la izquierda
+Estar hasta las narices
+Poner los puntos sobre las íes
+Estar sin blanca
+Costar un ojo de la cara
+Estar hecho polvo
+Pasar página
+Quedarse de piedra
+Hacer borrón y cuenta nueva
+No pegar ojo
+Caer en la cuenta
+Poner manos a la obra
+Tener un corazón de oro
+Estar hecho un lío
+A otro perro con ese hueso
+Estar al pie del cañón
+Cruzar los dedos
+Estar en la luna de Valencia
+Estar en apuros
+Tener la sartén por el mango
+Estar de mala leche
+No tener dos dedos de frente
+Estar frito
+Dar gato por liebre
+Estar a dos velas
+Estar con la soga al cuello
+Tener pájaros en la cabeza
+Ponerse las pilas
+Estar como pez en el agua
+Tener la cabeza en su sitio
+Quedarse en blanco
+Ser un manitas
+Estar hasta el cuello
+Estar de capa caída
+Poner el grito en el cielo
+Cortar por lo sano
+No dar su brazo a torcer
+Hacer oídos sordos
+Tener la lengua larga
+Ser un aguafiestas
+Dar la nota
+Romper el hielo
+Ser un alma de cántaro
+Estar en el séptimo cielo
+Pasarlo bomba
+Ser más listo que el hambre
+Estar por las nubes
+Estar en ascuas
+Estar en la gloria
+Tener la cabeza llena de pájaros
+Llevarse el gato al agua
+Ser un hueso duro de roer
+Ser el ojo derecho de alguien
+Estar en el punto de mira
+Ser una caja de sorpresas
+Estar como un flan
+Morderse la lengua
+Estar con el agua al cuello
+Estar de los nervios
+Ser un bala perdida
+Dar en el blanco
+Estar a punto de caramelo
+No mover un dedo
+Tener madera de líder
+Hacerse el sueco
+Estar de uñas
+Estar hecho un toro
+Salirse con la suya
+Ver las estrellas
+A lo hecho, pecho
+Ojos que no ven, corazón que no siente
+A palabras necias, oídos sordos
+El que madruga, Dios le ayuda
+No hay mal que por bien no venga
+Cada loco con su tema
+Más vale prevenir que curar
+Quien ríe último, ríe mejor
+No dejes para mañana lo que puedas hacer hoy
+El tiempo todo lo cura
+La unión hace la fuerza
+Quien no arriesga no gana
+La esperanza es lo último que se pierde
+Todo lo bueno se hace esperar
+Vísteme despacio que tengo prisa
+Harry Potter
+Hermione Granger
+Ron Weasley
+Dumbledore
+Voldemort
+Severus Snape
+Draco Malfoy
+Luna Lovegood
+Hagrid
+Katniss Everdeen
+Peeta Mellark
+Finnick Odair
+Effie Trinket
+Darth Vader
+Luke Skywalker
+Leia Organa
+Han Solo
+Chewbacca
+Yoda
+Obi-Wan Kenobi
+Rey
+Kylo Ren
+Boba Fett
+Grogu
+Frodo Bolsón
+Sam Gamyi
+Gandalf
+Legolas
+Aragorn
+Gollum
+Sauron
+Boromir
+Gimli
+Théoden
+Éowyn
+Saruman
+Spider-Man
+Iron Man
+Capitán América
+Hulk
+Thor
+Black Widow
+Loki
+Doctor Strange
+Thanos
+Wolverine
+Deadpool
+Magneto
+Charles Xavier
+Jean Grey
+Storm
+Batman
+Superman
+Wonder Woman
+Flash
+Aquaman
+Joker
+Harley Quinn
+Riddler
+Catwoman
+Alfred Pennyworth
+Robin
+Shrek
+Burro
+Fiona
+Lord Farquaad
+Simba
+Mufasa
+Scar
+Timón
+Pumba
+Buzz Lightyear
+Woody
+Rex
+Mr. Potato
+Elsa
+Anna
+Olaf
+Kristoff
+Rapunzel
+Flynn Rider
+Ariel
+Sebastián
+Úrsula
+Bella
+Bestia
+Maléfica
+Blancanieves
+Cenicienta
+Aurora
+Mulán
+Pocahontas
+Hércules
+Hades
+Tarzán
+Jane
+Baloo
+Bagheera
+Aladdín
+Jasmín
+Genio
+Jafar
+Peter Pan
+Wendy
+Campanilla
+Hook
+Homer Simpson
+Marge Simpson
+Bart Simpson
+Lisa Simpson
+Maggie Simpson
+Peter Griffin
+Lois Griffin
+Stewie Griffin
+Brian Griffin
+Sherlock Holmes
+Dr. Watson
+James Bond
+Indiana Jones
+Lara Croft
+Jack Sparrow
+Elizabeth Swann
+Will Turner
+Tony Stark
+Bruce Wayne
+Clark Kent
+Natasha Romanoff
+Steve Rogers
+Diana Prince
+Arthur Curry
+Logan
+Jean Valjean
+Elsa de Arendelle
+Anna de Arendelle
+Woody Pride
+Jessie
+Rex el dinosaurio
+Severus Snape
+Hermione Granger
+Harry Potter
+Draco Malfoy
+Dobby
+Hagrid
+Frodo
+Gandalf el Gris
+Aragorn hijo de Arathorn
+Albert Einstein
+Isaac Newton
+Nikola Tesla
+Marie Curie
+Charles Darwin
+Galileo Galilei
+Leonardo da Vinci
+Michelangelo
+Pablo Picasso
+Salvador Dalí
+Vincent van Gogh
+Ludwig van Beethoven
+Wolfgang Amadeus Mozart
+Johann Sebastian Bach
+Elvis Presley
+Freddie Mercury
+Michael Jackson
+Madonna
+Beyoncé
+Taylor Swift
+Rihanna
+Lady Gaga
+Shakira
+Rosalía
+Bad Bunny
+Maluma
+Karol G
+Daddy Yankee
+Eminem
+Drake
+Kanye West
+Justin Bieber
+Ariana Grande
+Billie Eilish
+Dua Lipa
+Ed Sheeran
+The Weeknd
+Selena Gomez
+Lionel Messi
+Cristiano Ronaldo
+Neymar Jr
+Kylian Mbappé
+Diego Maradona
+Pelé
+Rafa Nadal
+Roger Federer
+Novak Djokovic
+Lewis Hamilton
+Fernando Alonso
+Michael Schumacher
+Usain Bolt
+Simone Biles
+Michael Phelps
+Serena Williams
+Barack Obama
+Joe Biden
+Donald Trump
+Vladimir Putin
+Xi Jinping
+Emmanuel Macron
+Angela Merkel
+Pedro Sánchez
+Isabel II
+Felipe VI
+Letizia Ortiz
+Julio Iglesias
+Enrique Iglesias
+Penélope Cruz
+Antonio Banderas
+Javier Bardem
+Pedro Almodóvar
+Leonardo DiCaprio
+Brad Pitt
+Angelina Jolie
+Johnny Depp
+Tom Cruise
+Robert Downey Jr.
+Scarlett Johansson
+Chris Evans
+Chris Hemsworth
+Jennifer Lawrence
+Emma Watson
+Daniel Radcliffe
+Rupert Grint
+Keanu Reeves
+Morgan Freeman
+Denzel Washington
+Will Smith
+Harrison Ford
+Tom Hanks
+Meryl Streep
+Julia Roberts
+Anne Hathaway
+Hugh Jackman
+Ryan Reynolds
+Ryan Gosling
+Margot Robbie
+Robert De Niro
+Al Pacino
+Marlon Brando
+Audrey Hepburn
+Marilyn Monroe
+Charlie Chaplin
+Walt Disney
+Steve Jobs
+Bill Gates
+Elon Musk
+Jeff Bezos
+Mark Zuckerberg
+Larry Page
+Sergey Brin
+Sundar Pichai
+Tim Cook
+Greta Thunberg
+Malala Yousafzai
+Oprah Winfrey
+Ellen DeGeneres
+Jimmy Fallon
+Stephen Colbert
+Kobe Bryant
+LeBron James
+Stephen Curry
+Shaquille O’Neal
+Nikolái Tesla
+Napoleón Bonaparte
+Alejandro Magno
+Julio César
+Winston Churchill
+Abraham Lincoln
+Nelson Mandela
+Mahatma Gandhi
+Martin Luther King Jr.
+Teresa de Calcuta
+Cleopatra
+Juana de Arco
+Cristóbal Colón
+Simón Bolívar
+Che Guevara
+Karl Marx
+Friedrich Nietzsche
+Sigmund Freud
+Albert Camus
+William Shakespeare
+Miguel de Cervantes
+Gabriel García Márquez
+Mario Vargas Llosa
+Jorge Luis Borges
+Federico García Lorca
+George Lucas
+Steven Spielberg
+Christopher Nolan
+James Cameron
+Peter Jackson
+Tim Burton
+Quentin Tarantino
+Guillermo del Toro
+Ridley Scott
+Martin Scorsese
