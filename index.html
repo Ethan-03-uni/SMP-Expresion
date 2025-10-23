@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expresión</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="menu" class="screen active">
+    <h1 class="title">Expresión</h1>
+    <button id="playButton" class="btn">Jugar</button>
+  </div>
+
+  <div id="game" class="screen">
+    <div id="scoreBar">
+      <span id="scoreRed">🔴 0</span>
+      <span id="scoreBlue">🔵 0</span>
+    </div>
+    <div id="wordContainer">
+      <h2 id="word">Preparados...</h2>
+    </div>
+    <canvas id="confettiCanvas"></canvas>
+  </div>
+
+  <div id="winnerScreen" class="screen">
+    <h1 id="winnerText"></h1>
+    <button id="restartButton" class="btn">Volver a jugar</button>
+  </div>
+</body>
+</html>
