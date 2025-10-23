@@ -71,7 +71,6 @@ function iniciarTicTac() {
     const elapsed = performance.now() - tiempoInicio;
     const restante = Math.max(0, tiempoTotal - elapsed);
 
-    // Cuanto menos tiempo quede, más rápido el tic (máx. velocidad algo más lenta)
     let baseInterval = 900;
     if (restante < tiempoTotal * 0.6) baseInterval = 750;
     if (restante < tiempoTotal * 0.4) baseInterval = 550;
@@ -133,7 +132,7 @@ function actualizarPuntos() {
 function mostrarGanador(equipo) {
   game.classList.remove('active');
   winnerScreen.classList.add('active');
-  wordElem.textContent = ''; // oculta mensaje "punto para" al finalizar partida
+  wordElem.textContent = ''; 
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
 
   try {
@@ -170,6 +169,7 @@ function lanzarConfeti() {
   animarConfeti();
 }
 
+// 🌀 versión mejorada: el confeti se limpia solo al terminar
 function animarConfeti() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
   confettis.forEach(c => {
@@ -182,8 +182,12 @@ function animarConfeti() {
     ctx.fillRect(c.x, c.y, c.r, c.r);
   });
 
-  if (confettis.length && confettis.some(c => c.y < innerHeight + 20)) {
+  if (confettis.some(c => c.y < innerHeight + 20)) {
     requestAnimationFrame(animarConfeti);
+  } else {
+    // limpiar al terminar
+    confettis = [];
+    confettiCanvas.style.display = 'none';
   }
 }
 
@@ -225,4 +229,5 @@ addEventListener('resize', () => {
   confettiCanvas.height = innerHeight;
 });
 
-animarConfeti();
+// 🧹 No llamamos animarConfeti() al cargar la página.
+// Solo se invoca desde lanzarConfeti() cuando hay partículas activas.
