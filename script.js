@@ -112,6 +112,7 @@ function explotar() {
   rondaActiva = false;
   pararTicTac();
   clearTimeout(temporizadorId);
+  lanzarConfeti();
 
   try {
     bellSound.currentTime = 0;
