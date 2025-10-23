@@ -17,6 +17,9 @@ const confettiCanvas = document.getElementById('confettiCanvas');
 const winnerText = document.getElementById('winnerText');
 const ticSound = document.getElementById('ticSound');
 
+// Nuevo sonido de campana al final de la ronda
+const bellSound = new Audio('assets/bell.wav');
+
 const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
 confettiCanvas.height = innerHeight;
@@ -26,7 +29,6 @@ let confettis = [];
 async function cargarPalabras() {
   const res = await fetch('palabras.txt');
   const text = await res.text();
-  // Permite frases completas con espacios, separadas por salto de línea
   palabras = text.split(/\r?\n/).map(p => p.trim()).filter(Boolean);
 }
 
@@ -44,35 +46,43 @@ function palabraAleatoria() {
 function nuevaRonda() {
   rondaActiva = true;
   tiempoTranscurrido = 0;
-  wordElem.textContent = palabraAleatoria();
-  cambiarTurno();
-  tiempoTotal = Math.random() * 7000 + 5000; // 5–12s aleatorio
+  tiempoTotal = Math.random() * 7000 + 5000; // 5–12s
   clearTimeout(temporizador);
-  temporizador = setTimeout(explotar, tiempoTotal);
-  iniciarTicTac();
-}
-
-function pararTicTac() {
   clearInterval(ticInterval);
+  iniciarTicTac();
+  temporizador = setTimeout(explotar, tiempoTotal);
+  cambiarTurno();
+  wordElem.textContent = palabraAleatoria();
 }
 
 function iniciarTicTac() {
-  pararTicTac();
-  let intervalo = 1000; // 1s entre tics
-  ticInterval = setInterval(() => {
-    const progreso = tiempoTranscurrido / tiempoTotal;
-    if (progreso > 0.7) intervalo = 500; // más rápido
-    if (progreso > 0.9) intervalo = 250; // aún más rápido
-    // reproducir sonido
+  const start = performance.now();
+  const reproducirTic = () => {
+    const elapsed = performance.now() - start;
+    const progreso = elapsed / tiempoTotal;
+
+    // ajustar velocidad según progreso
+    let intervalo = 1000; // base
+    if (progreso > 0.5) intervalo = 700;
+    if (progreso > 0.7) intervalo = 400;
+    if (progreso > 0.85) intervalo = 200;
+
     ticSound.currentTime = 0;
-    ticSound.play();
-    tiempoTranscurrido += intervalo;
-  }, intervalo);
+    ticSound.play().catch(() => {});
+
+    ticInterval = setTimeout(reproducirTic, intervalo);
+  };
+  reproducirTic();
+}
+
+function pararTicTac() {
+  clearTimeout(ticInterval);
 }
 
 function explotar() {
   rondaActiva = false;
   pararTicTac();
+  bellSound.play().catch(() => {});
 
   let ganador = turno === 'rojo' ? 'azul' : 'rojo';
   puntos[ganador]++;
@@ -139,11 +149,9 @@ document.getElementById('restartButton').addEventListener('click', () => {
 });
 
 game.addEventListener('click', () => {
-  if (rondaActiva) {
-    nuevaRonda();
-  } else {
-    nuevaRonda();
-  }
+  if (!rondaActiva) return; // evita clicks fuera de ronda
+  cambiarTurno();
+  wordElem.textContent = palabraAleatoria();
 });
 
 addEventListener('resize', () => {
