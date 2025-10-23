@@ -52,7 +52,7 @@ function nuevaRonda() {
   rondaActiva = true;
   nextRoundReady = false;
 
-  tiempoTotal = Math.random() * 7000 + 5000; // entre 5 y 12 s
+  tiempoTotal = Math.random() * 30000 + 45000; // entre 5 y 12 s
   tiempoInicio = performance.now();
 
   clearTimeout(temporizadorId);
@@ -122,11 +122,14 @@ function explotar() {
   puntos[ganador]++;
   actualizarPuntos();
 
-  if (puntos[ganador] >= 3) {
+  if (puntos[ganador] >= 6) {
     mostrarGanador(ganador);
   } else {
     mostrarMensajeRonda(ganador);
-    nextRoundReady = true;
+    nextRoundReady = false;
+    setTimeout(() => {
+      nextRoundReady = true;
+    }, 5000);
   }
 }
 
