@@ -1,4 +1,4 @@
-// script.js — versión con confeti visible y mensaje persistente
+// script.js — versión final con confeti mejorado y lógica completa
 let palabras = [];
 let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
@@ -26,13 +26,16 @@ const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
 confettiCanvas.height = innerHeight;
 let confettis = [];
+let confetiActivo = false;
 
+// 📦 Cargar lista de palabras
 async function cargarPalabras() {
   const res = await fetch('palabras.txt');
   const text = await res.text();
   palabras = text.split(/\r?\n/).map(p => p.trim()).filter(Boolean);
 }
 
+// 🔄 Cambiar turno visualmente
 function cambiarTurno() {
   turno = turno === 'rojo' ? 'azul' : 'rojo';
   document.body.style.background = turno === 'rojo'
@@ -45,11 +48,12 @@ function palabraAleatoria() {
   return palabras[Math.floor(Math.random() * palabras.length)];
 }
 
+// 🎮 Nueva ronda
 function nuevaRonda() {
   rondaActiva = true;
   nextRoundReady = false;
 
-  tiempoTotal = Math.random() * 7000 + 5000;
+  tiempoTotal = Math.random() * 7000 + 5000; // entre 5 y 12 s
   tiempoInicio = performance.now();
 
   clearTimeout(temporizadorId);
@@ -64,6 +68,7 @@ function nuevaRonda() {
   wordElem.style.fontSize = '3em';
 }
 
+// ⏱️ Efecto tic-tac dinámico
 function iniciarTicTac() {
   const tick = () => {
     if (!rondaActiva) return;
@@ -95,6 +100,7 @@ function pararTicTac() {
   clearTimeout(ticTimeoutId);
 }
 
+// 🏁 Mensaje cuando alguien gana la ronda
 function mostrarMensajeRonda(color) {
   const emoji = color === 'rojo' ? '🔴' : '🔵';
   wordElem.textContent = `¡Punto para ${color.toUpperCase()} ${emoji}!`;
@@ -102,6 +108,7 @@ function mostrarMensajeRonda(color) {
   wordElem.style.opacity = '1';
 }
 
+// 💣 Se acaba el tiempo
 function explotar() {
   rondaActiva = false;
   pararTicTac();
@@ -129,6 +136,7 @@ function actualizarPuntos() {
   scoreBlue.textContent = `🔵 ${puntos.azul}`;
 }
 
+// 🏆 Pantalla final
 function mostrarGanador(equipo) {
   game.classList.remove('active');
   winnerScreen.classList.add('active');
@@ -150,15 +158,18 @@ function mostrarGanador(equipo) {
   lanzarConfeti();
 }
 
+// 🎊 Confeti mejorado (más partículas, caída lenta y vistosa)
 function lanzarConfeti() {
-  // llenar array con partículas nuevas
+  if (confetiActivo) return; // evita animaciones duplicadas
+  confetiActivo = true;
   confettis = [];
-  for (let i = 0; i < 300; i++) {
+
+  for (let i = 0; i < 400; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
       y: Math.random() * innerHeight - innerHeight,
       r: Math.random() * 6 + 4,
-      d: Math.random() * 20 + 10,
+      d: Math.random() * 15 + 5, // caída más lenta
       color: `hsl(${Math.random() * 360},100%,50%)`,
       tilt: Math.random() * 10 - 10,
       tiltAngle: Math.random() * Math.PI
@@ -169,24 +180,25 @@ function lanzarConfeti() {
   animarConfeti();
 }
 
-// 🌀 versión mejorada: el confeti se limpia solo al terminar
 function animarConfeti() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
+
   confettis.forEach(c => {
-    c.tiltAngle += 0.1;
-    c.y += c.d * 0.1;
-    c.x += Math.sin(c.tiltAngle) * 2;
+    c.tiltAngle += 0.05;
+    c.y += c.d * 0.08; // caída más suave
+    c.x += Math.sin(c.tiltAngle) * 1.5;
 
     ctx.beginPath();
     ctx.fillStyle = c.color;
     ctx.fillRect(c.x, c.y, c.r, c.r);
   });
 
-  if (confettis.some(c => c.y < innerHeight + 20)) {
+  confettis = confettis.filter(c => c.y < innerHeight + 50);
+
+  if (confettis.length > 0) {
     requestAnimationFrame(animarConfeti);
   } else {
-    // limpiar al terminar
-    confettis = [];
+    confetiActivo = false;
     confettiCanvas.style.display = 'none';
   }
 }
