@@ -26,7 +26,6 @@ const ctx = confettiCanvas.getContext('2d');
 confettiCanvas.width = innerWidth;
 confettiCanvas.height = innerHeight;
 let confettis = [];
-let confetiActivo = false;
 
 // 📦 Cargar lista de palabras
 async function cargarPalabras() {
@@ -142,6 +141,7 @@ function mostrarGanador(equipo) {
   winnerScreen.classList.add('active');
   wordElem.textContent = ''; 
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
+  lanzarConfeti();
 
   try {
     bellSound.currentTime = 0;
@@ -154,53 +154,32 @@ function mostrarGanador(equipo) {
       applauseSound.play().catch(() => {});
     } catch (e) {}
   }, 500);
-
-  lanzarConfeti();
 }
 
-// 🎊 Confeti mejorado (más partículas, caída lenta y vistosa)
 function lanzarConfeti() {
-  if (confetiActivo) return; // evita animaciones duplicadas
-  confetiActivo = true;
-  confettis = [];
-
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < 100; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
       y: Math.random() * innerHeight - innerHeight,
       r: Math.random() * 6 + 4,
-      d: Math.random() * 15 + 5, // caída más lenta
+      d: Math.random() * 20 + 10,
       color: `hsl(${Math.random() * 360},100%,50%)`,
-      tilt: Math.random() * 10 - 10,
-      tiltAngle: Math.random() * Math.PI
+      tilt: Math.random() * 10 - 10
     });
   }
-
-  confettiCanvas.style.display = 'block';
-  animarConfeti();
 }
 
 function animarConfeti() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
-
   confettis.forEach(c => {
-    c.tiltAngle += 0.05;
-    c.y += c.d * 0.08; // caída más suave
-    c.x += Math.sin(c.tiltAngle) * 1.5;
-
     ctx.beginPath();
     ctx.fillStyle = c.color;
     ctx.fillRect(c.x, c.y, c.r, c.r);
+    c.y += c.d * 0.1;
+    c.x += Math.sin(c.tilt) * 0.5;
   });
-
-  confettis = confettis.filter(c => c.y < innerHeight + 50);
-
-  if (confettis.length > 0) {
-    requestAnimationFrame(animarConfeti);
-  } else {
-    confetiActivo = false;
-    confettiCanvas.style.display = 'none';
-  }
+  confettis = confettis.filter(c => c.y < innerHeight);
+  requestAnimationFrame(animarConfeti);
 }
 
 // --- Listeners ---
@@ -241,5 +220,4 @@ addEventListener('resize', () => {
   confettiCanvas.height = innerHeight;
 });
 
-// 🧹 No llamamos animarConfeti() al cargar la página.
-// Solo se invoca desde lanzarConfeti() cuando hay partículas activas.
+animarConfeti();
