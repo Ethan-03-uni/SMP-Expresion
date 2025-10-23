@@ -1,4 +1,4 @@
-// script.js (versión mejorada)
+// script.js (versión ajustada con confeti, tictac más lento y mensaje de ronda)
 let palabras = [];
 let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
@@ -70,15 +70,14 @@ function iniciarTicTac() {
 
     const elapsed = performance.now() - tiempoInicio;
     const restante = Math.max(0, tiempoTotal - elapsed);
-    const progreso = 1 - (restante / tiempoTotal); // 0 al inicio, 1 al final
 
-    // Cuanto menos tiempo quede, más rápido el tic
-    // y un pequeño componente aleatorio para generar sorpresa
+    // Cuanto menos tiempo quede, más rápido el tic (más lento al final que antes)
     let baseInterval = 900;
-    if (restante < tiempoTotal * 0.6) baseInterval = 700;
-    if (restante < tiempoTotal * 0.4) baseInterval = 450;
-    if (restante < tiempoTotal * 0.2) baseInterval = 250;
-    if (restante < tiempoTotal * 0.1) baseInterval = 150;
+    if (restante < tiempoTotal * 0.6) baseInterval = 750;
+    if (restante < tiempoTotal * 0.4) baseInterval = 550;
+    if (restante < tiempoTotal * 0.2) baseInterval = 350;
+    if (restante < tiempoTotal * 0.1) baseInterval = 200; // más lento que antes
+
     const randomFactor = Math.random() * 0.3 + 0.85;
     const intervalo = baseInterval * randomFactor;
 
@@ -95,6 +94,19 @@ function iniciarTicTac() {
 
 function pararTicTac() {
   clearTimeout(ticTimeoutId);
+}
+
+function mostrarMensajeRonda(color) {
+  const emoji = color === 'rojo' ? '🔴' : '🔵';
+  wordElem.textContent = `¡Punto para ${color.toUpperCase()} ${emoji}!`;
+  wordElem.style.fontSize = '2em';
+  wordElem.style.opacity = '1';
+
+  // Desaparece después de 1.5 s (solo visual)
+  setTimeout(() => {
+    if (!nextRoundReady) return; // no limpiar si ya ganó la partida
+    wordElem.textContent = '';
+  }, 1500);
 }
 
 function explotar() {
@@ -114,8 +126,7 @@ function explotar() {
   if (puntos[ganador] >= 3) {
     mostrarGanador(ganador);
   } else {
-    // No mostrar texto ni mensaje, solo esperar click
-    wordElem.textContent = '';
+    mostrarMensajeRonda(ganador);
     nextRoundReady = true;
   }
 }
@@ -130,6 +141,7 @@ function mostrarGanador(equipo) {
   winnerScreen.classList.add('active');
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
 
+  // reproducir sonidos
   try {
     bellSound.currentTime = 0;
     bellSound.play().catch(() => {});
@@ -146,7 +158,9 @@ function mostrarGanador(equipo) {
 }
 
 function lanzarConfeti() {
-  for (let i = 0; i < 150; i++) {
+  // reiniciar confetti
+  confettis = [];
+  for (let i = 0; i < 180; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
       y: Math.random() * innerHeight - innerHeight,
@@ -167,7 +181,7 @@ function animarConfeti() {
     c.y += c.d * 0.1;
     c.x += Math.sin(c.tilt) * 0.5;
   });
-  confettis = confettis.filter(c => c.y < innerHeight);
+  confettis = confettis.filter(c => c.y < innerHeight + 10);
   requestAnimationFrame(animarConfeti);
 }
 
@@ -182,7 +196,6 @@ document.getElementById('playButton').addEventListener('click', async () => {
 });
 
 document.getElementById('restartButton').addEventListener('click', () => {
-  // detener aplausos al volver al menú
   applauseSound.pause();
   applauseSound.currentTime = 0;
 
