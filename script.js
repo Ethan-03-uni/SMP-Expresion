@@ -158,30 +158,49 @@ function mostrarGanador(equipo) {
 }
 
 function lanzarConfeti() {
-  for (let i = 0; i < 100; i++) {
+  // Reiniciar confettis y mostrar canvas
+  confettis = [];
+  confettiCanvas.style.display = 'block';
+
+  // Generar partículas de confeti con variedad de formas y velocidades
+  for (let i = 0; i < 150; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
-      y: Math.random() * innerHeight - innerHeight,
-      r: Math.random() * 6 + 4,
-      d: Math.random() * 20 + 10,
-      color: `hsl(${Math.random() * 360},100%,50%)`,
-      tilt: Math.random() * 10 - 10
+      y: Math.random() * -innerHeight,
+      r: Math.random() * 8 + 4,
+      d: Math.random() * 30 + 10,
+      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+      tilt: Math.random() * 20 - 10,
+      shape: Math.random() > 0.5 ? 'circle' : 'square'
     });
   }
+
+  animarConfeti(); // Iniciar animación justo después de crear los confettis
 }
+
 
 function animarConfeti() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
+
   confettis.forEach(c => {
     ctx.beginPath();
     ctx.fillStyle = c.color;
-    ctx.fillRect(c.x, c.y, c.r, c.r);
+
+    if (c.shape === 'circle') {
+      ctx.arc(c.x, c.y, c.r / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.fillRect(c.x, c.y, c.r, c.r);
+    }
+
     c.y += c.d * 0.1;
     c.x += Math.sin(c.tilt) * 0.5;
   });
+
   confettis = confettis.filter(c => c.y < innerHeight);
   requestAnimationFrame(animarConfeti);
 }
+
 
 // --- Listeners ---
 document.getElementById('playButton').addEventListener('click', async () => {
