@@ -1,4 +1,4 @@
-// script.js (versión ajustada con confeti, tictac más lento y mensaje de ronda)
+// script.js — versión con confeti visible y mensaje persistente
 let palabras = [];
 let turno = 'rojo';
 let puntos = { rojo: 0, azul: 0 };
@@ -71,12 +71,12 @@ function iniciarTicTac() {
     const elapsed = performance.now() - tiempoInicio;
     const restante = Math.max(0, tiempoTotal - elapsed);
 
-    // Cuanto menos tiempo quede, más rápido el tic (más lento al final que antes)
+    // Cuanto menos tiempo quede, más rápido el tic (máx. velocidad algo más lenta)
     let baseInterval = 900;
     if (restante < tiempoTotal * 0.6) baseInterval = 750;
     if (restante < tiempoTotal * 0.4) baseInterval = 550;
     if (restante < tiempoTotal * 0.2) baseInterval = 350;
-    if (restante < tiempoTotal * 0.1) baseInterval = 200; // más lento que antes
+    if (restante < tiempoTotal * 0.1) baseInterval = 200;
 
     const randomFactor = Math.random() * 0.3 + 0.85;
     const intervalo = baseInterval * randomFactor;
@@ -101,12 +101,6 @@ function mostrarMensajeRonda(color) {
   wordElem.textContent = `¡Punto para ${color.toUpperCase()} ${emoji}!`;
   wordElem.style.fontSize = '2em';
   wordElem.style.opacity = '1';
-
-  // Desaparece después de 1.5 s (solo visual)
-  setTimeout(() => {
-    if (!nextRoundReady) return; // no limpiar si ya ganó la partida
-    wordElem.textContent = '';
-  }, 1500);
 }
 
 function explotar() {
@@ -139,9 +133,9 @@ function actualizarPuntos() {
 function mostrarGanador(equipo) {
   game.classList.remove('active');
   winnerScreen.classList.add('active');
+  wordElem.textContent = ''; // oculta mensaje "punto para" al finalizar partida
   winnerText.textContent = `¡${equipo.toUpperCase()} GANA! 🎊`;
 
-  // reproducir sonidos
   try {
     bellSound.currentTime = 0;
     bellSound.play().catch(() => {});
@@ -158,31 +152,39 @@ function mostrarGanador(equipo) {
 }
 
 function lanzarConfeti() {
-  // reiniciar confetti
+  // llenar array con partículas nuevas
   confettis = [];
-  for (let i = 0; i < 180; i++) {
+  for (let i = 0; i < 300; i++) {
     confettis.push({
       x: Math.random() * innerWidth,
       y: Math.random() * innerHeight - innerHeight,
       r: Math.random() * 6 + 4,
       d: Math.random() * 20 + 10,
       color: `hsl(${Math.random() * 360},100%,50%)`,
-      tilt: Math.random() * 10 - 10
+      tilt: Math.random() * 10 - 10,
+      tiltAngle: Math.random() * Math.PI
     });
   }
+
+  confettiCanvas.style.display = 'block';
+  animarConfeti();
 }
 
 function animarConfeti() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
   confettis.forEach(c => {
+    c.tiltAngle += 0.1;
+    c.y += c.d * 0.1;
+    c.x += Math.sin(c.tiltAngle) * 2;
+
     ctx.beginPath();
     ctx.fillStyle = c.color;
     ctx.fillRect(c.x, c.y, c.r, c.r);
-    c.y += c.d * 0.1;
-    c.x += Math.sin(c.tilt) * 0.5;
   });
-  confettis = confettis.filter(c => c.y < innerHeight + 10);
-  requestAnimationFrame(animarConfeti);
+
+  if (confettis.length && confettis.some(c => c.y < innerHeight + 20)) {
+    requestAnimationFrame(animarConfeti);
+  }
 }
 
 // --- Listeners ---
@@ -192,18 +194,20 @@ document.getElementById('playButton').addEventListener('click', async () => {
   await cargarPalabras();
   puntos = { rojo: 0, azul: 0 };
   actualizarPuntos();
+  confettiCanvas.style.display = 'none';
   nuevaRonda();
 });
 
 document.getElementById('restartButton').addEventListener('click', () => {
   applauseSound.pause();
   applauseSound.currentTime = 0;
+  confettiCanvas.style.display = 'none';
+  confettis = [];
 
   winnerScreen.classList.remove('active');
   menu.classList.add('active');
   puntos = { rojo: 0, azul: 0 };
   actualizarPuntos();
-  confettis = [];
 });
 
 game.addEventListener('click', () => {
